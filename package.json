@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "firebase": "^9.8.1",
     "vue": "^3.2.13",
+    "firebase": "^8.10.1",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },

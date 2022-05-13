@@ -1,14 +1,15 @@
-import { initializeApp } from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCheI_qdsqZUMc8gG99pzjdIQ-oaCyECg0',
-  authDomain: 'challenge-81c1b.firebaseapp.com',
-  projectId: 'challenge-81c1b',
-  storageBucket: 'challenge-81c1b.appspot.com',
-  messagingSenderId: '438607187760',
-  appId: '1:438607187760:web:68fa4690c75c1d05fcc2f5'
+  apiKey: 'AIzaSyCrv_OBvsdFcpkIolRPONvxnIiaWGq7Lng',
+  authDomain: 'todo-app-2bbc2.firebaseapp.com',
+  projectId: 'todo-app-2bbc2',
+  storageBucket: 'todo-app-2bbc2.appspot.com',
+  messagingSenderId: '508600460149',
+  appId: '1:508600460149:web:f153c460ea274c21f5693c'
 }
 
-const firebaseApp = initializeApp(firebaseConfig)
+const firebaseApp = firebase.initializeApp(firebaseConfig)
+
 export const db = firebaseApp.firestore()

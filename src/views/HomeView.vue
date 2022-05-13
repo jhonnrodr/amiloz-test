@@ -28,30 +28,63 @@
   </div>
 </template>
 <script>
+import { db } from '../store/db.js'
+
 export default {
   name: 'HomeView',
   data () {
     return {
-      items: [
-        { id: 1, text: 'Buy milk', completed: false },
-        { id: 2, text: 'Go to the gym', completed: true }
-      ],
+      items: [],
       newItem: ''
     }
   },
+  created () {
+    this.getTasks()
+  },
   methods: {
     getTasks () {
-
+      db.collection('todo').get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.items.push(
+              {
+                id: doc.id,
+                text: doc.data().text,
+                completed: doc.data().completed
+              }
+            )
+          })
+        })
     },
     addTask () {
-      this.items.push({
-        id: this.items.length + 1,
-        text: this.newItem
-      })
-      this.newItem = ''
+      db.collection('todo')
+        .add({
+          text: this.newItem,
+          completed: false
+        })
+        .then(() => {
+          this.items.push({
+            text: this.newItem,
+            completed: false
+          })
+          this.newItem = ''
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     completeTask (item) {
       item.completed = !item.completed
+      db.collection('todo')
+        .doc(item.id)
+        .update({
+          completed: item.completed
+        }).then(() => {
+          console.log('updated')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
